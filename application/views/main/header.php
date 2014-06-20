@@ -59,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Kedai Soe-Soe Application  </a>
+          <a class="navbar-brand" href="<?php echo site_url('dashboard/')?>">Kedai Soe-Soe Application  </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,9 +68,7 @@
             <li class="dropdown alerts-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file"></i>&nbsp;Laporan <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo site_url('dashboardLaporan/laporan_harian');?>">Per Shift</a></li>
-               
-                
+                <li><a href="<?php echo site_url('dashboardLaporan/laporan_harian');?>">Per Hari</a></li>
                 <li class="divider"></li>
                 <li><a href="<?php echo site_url('dashboardLaporan/laporan_bulanan');?>">Per Bulan</a></li>
               </ul>
@@ -82,11 +80,11 @@
             echo'<li class="dropdown alerts-dropdown">';
               echo'<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-asterisk"></i> Navigasi     <b class="caret"></b></a>';
               echo'<ul class="dropdown-menu">';
-                echo'<li><a href="dashboardAdmin">Dashboard Admin</a></li>';
+                echo"<li><a href=".site_url('dashboardAdmin').">Dashboard Admin</a></li>";
                 echo'<li class="divider"></li>';
-                echo'<li><a href="dashboardDapur">Dashboard Dapur</a></li>';
+                echo"<li><a href=".site_url('dashboardDapur').">Dashboard Dapur</a></li>";
                 echo'<li class="divider"></li>';
-                echo'<li><a href="dashboard">Dashboard Kasir</a></li>';
+                echo"<li><a href=".site_url('dashboard').">Dashboard Kasir</a></li>";
               echo'</ul>';
             echo'</li>';
             }?>

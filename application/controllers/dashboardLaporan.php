@@ -81,9 +81,13 @@ class DashboardLaporan extends CI_Controller {
  		$tanggal = date('Y-m-d');
 
  		$data['sekarang'] = date("Y-m-d");
- 		$data['transaksiharian'] = $this->laporanModel->ambilHarian($tanggal);
+ 		$data['ditempat'] = $this->laporanModel->pendapatanHari($tanggal,'4');
+ 		$data['totaltempat'] = $this->laporanModel->pendapatantotalHari($tanggal,'4');
+ 		
+ 		$data['delivery'] = $this->laporanModel->pendapatanHari($tanggal,'5');
+ 		$data['totaldelivery'] = $this->laporanModel->pendapatantotalHari($tanggal,'5');
 
-		$this->load->view('main/header',$data);
+ 		$this->load->view('main/header',$data);
 		$this->load->view('laporan/harian',$data);
  		} 
  		
@@ -120,21 +124,39 @@ class DashboardLaporan extends CI_Controller {
 		$tanggal = implode('-', $tgl);
 		$shift = $this->input->post('shift');
 
-		if($shift=='shift1'){
+		$data['tahune'] = $tgl[0];
+		$data['bulane'] = $tgl[1];
+		$data['tanggale'] = $tgl[2];
+
+ 		if($shift=='shift1'){
 			$waktu1 = '09:00:00';
 			$waktu2 = '13:00:00';
-			$data['cariharian'] = $this->laporanModel->cariHarian($tanggal,$waktu1,$waktu2);
+			
+			$data['ditempat'] = $this->laporanModel->caripendapatanHari($tanggal,'4',$waktu1,$waktu2);
+	 		$data['totaltempat'] = $this->laporanModel->caripendapatantotalHari($tanggal,'4',$waktu1,$waktu2);
+	 		
+	 		$data['delivery'] = $this->laporanModel->caripendapatanHari($tanggal,'5',$waktu1,$waktu2);
+	 		$data['totaldelivery'] = $this->laporanModel->caripendapatantotalHari($tanggal,'5',$waktu1,$waktu2);
+
 		}else if($shift=='shift2'){
 			$waktu1 = '13:00:01';
 			$waktu2 = '21:00:00';
-			$data['cariharian'] = $this->laporanModel->cariHarian($tanggal,$waktu1,$waktu2);
+			$data['ditempat'] = $this->laporanModel->caripendapatanHari($tanggal,'4',$waktu1,$waktu2);
+	 		$data['totaltempat'] = $this->laporanModel->caripendapatantotalHari($tanggal,'4',$waktu1,$waktu2);
+	 		
+	 		$data['delivery'] = $this->laporanModel->caripendapatanHari($tanggal,'5',$waktu1,$waktu2);
+	 		$data['totaldelivery'] = $this->laporanModel->caripendapatantotalHari($tanggal,'5',$waktu1,$waktu2);
 		}else{
 			$waktu1 = '';
 			$waktu2 = '';
-			$data['cariharian'] = $this->laporanModel->ambilHarian($tanggal);
+			$data['ditempat'] = $this->laporanModel->pendapatanHari($tanggal,'4');
+ 			$data['totaltempat'] = $this->laporanModel->pendapatantotalHari($tanggal,'4');
+ 		
+ 			$data['delivery'] = $this->laporanModel->pendapatanHari($tanggal,'5');
+ 			$data['totaldelivery'] = $this->laporanModel->pendapatantotalHari($tanggal,'5');
 		}
 		
-		$data['date'] = implode('-', $tgl);
+		$data['sekarang'] = implode('-', $tgl);
 		$data['shiftnya'] = $shift;
 		$this->load->view('main/header',$data);
 		$this->load->view('laporan/cari_laporan_harian',$data);		
@@ -173,12 +195,18 @@ class DashboardLaporan extends CI_Controller {
 
  		$bulan =date("m");
  		$tahun=date("Y");
-		$data['transaksibulanan'] = $this->laporanModel->ambilBulanan($bulan,$tahun);
+		//$data['transaksibulanan'] = $this->laporanModel->ambilBulanan($bulan,$tahun);
+
+ 		$data['ditempat'] = $this->laporanModel->pendapatanBulan($bulan,$tahun,'4');
+ 		$data['totaltempat'] = $this->laporanModel->pendapatantotalBulan($bulan,$tahun,'4');
+ 		
+ 		$data['delivery'] = $this->laporanModel->pendapatanBulan($bulan,$tahun,'5');
+ 		$data['totaldelivery'] = $this->laporanModel->pendapatantotalBulan($bulan,$tahun,'5');
 
 		$this->load->view('main/header',$data);
 		$this->load->view('laporan/bulanan',$data);
  		} 
- 		
+
  	}	
 	
 	public function cari_laporan_bulanan($id=NULL)
@@ -216,18 +244,32 @@ class DashboardLaporan extends CI_Controller {
 		if($shift=='shift1'){
 			$waktu1 = '09:00:00';
 			$waktu2 = '13:00:00';
-			$data['transaksibulanan'] = $this->laporanModel->cariBulanan($month,$year,$waktu1,$waktu2);
+			$data['ditempat'] = $this->laporanModel->caripendapatanBulan($month,$year,$waktu1,$waktu2,'4');
+	 		$data['totaltempat'] = $this->laporanModel->caripendapatantotalBulan($month,$year,$waktu1,$waktu2,'4');
+	 		
+	 		$data['delivery'] = $this->laporanModel->caripendapatanBulan($month,$year,$waktu1,$waktu2,'5');
+	 		$data['totaldelivery'] = $this->laporanModel->caripendapatantotalBulan($month,$year,$waktu1,$waktu2,'5');
+
 		}else if($shift=='shift2'){
 			$waktu1 = '13:00:01';
 			$waktu2 = '21:00:00';
-			$data['transaksibulanan'] = $this->laporanModel->cariBulanan($month,$year,$waktu1,$waktu2);
+			$data['ditempat'] = $this->laporanModel->caripendapatanBulan($month,$year,$waktu1,$waktu2,'4');
+	 		$data['totaltempat'] = $this->laporanModel->caripendapatantotalBulan($month,$year,$waktu1,$waktu2,'4');
+	 		
+	 		$data['delivery'] = $this->laporanModel->caripendapatanBulan($month,$year,$waktu1,$waktu2,'5');
+	 		$data['totaldelivery'] = $this->laporanModel->caripendapatantotalBulan($month,$year,$waktu1,$waktu2,'5');
 		}else{
 			$waktu1 = '';
 			$waktu2 = '';
-			$data['transaksibulanan'] = $this->laporanModel->ambilBulanan($month,$year);
+			$data['ditempat'] = $this->laporanModel->pendapatanBulan($month,$year,'4');
+	 		$data['totaltempat'] = $this->laporanModel->pendapatantotalBulan($month,$year,'4');
+	 		
+	 		$data['delivery'] = $this->laporanModel->pendapatanBulan($month,$year,'5');
+	 		$data['totaldelivery'] = $this->laporanModel->pendapatantotalBulan($month,$year,'5');
+
 		}
 		
- 		$data['tahun'] = $year;
+ 		$data['tahune'] = $year;
  		$data['bul'] = $month;
  		$data['shiftnya'] = $shift;
 		$this->load->view('main/header',$data);
@@ -235,7 +277,39 @@ class DashboardLaporan extends CI_Controller {
  		
  		} 
  		
- 	}	
+ 	}
+
+ 	function pendapatan_pershift(){
+ 		if($this->session->userdata('isLogin')==FALSE){
+ 			//balik hal login
+ 			redirect('loginControl/index');
+ 		}else{
+ 		$this->load->model('loginModel');
+ 		$user  = $this->session->userdata('username');
+ 		$level = $this->session->userdata('level');
+ 		$data['level']    = $this->session->userdata('level');
+ 		$data['pengguna'] = $this->loginModel->dataUser($user,$level);
+
+ 		$this->load->model('menuModel');
+ 		$data['dataHabis'] = $this->menuModel->stokMenuHabis();
+ 		$data['dataMasih'] = $this->menuModel->stokMenuMasih();
+
+
+ 		$this->load->model('transaksiModel');
+ 		$data['daerah_pemesan'] = $this->transaksiModel->daerah_pemesan();
+ 		$data['transaksi_ditempat'] = $this->transaksiModel->transaksi_ksd();
+ 		$data['transaksi_sementara_tampilmenu'] = $this->transaksiModel->transaksi_ditempat();
+
+ 		$data['semuaMenu'] = $this->menuModel->ambilMenuShift();
+ 		$data["pemesan"]= $this->session->flashdata('destinationNumber');
+ 		$data["flashsend"]= $this->session->flashdata("sukses");
+ 		$this->load->model('laporanModel');
+ 		$this->load->view('main/header',$data);
+ 		$this->load->view('laporan/pendapatan_pershift',$data);
+
+ 		}
+ 	}
+
 
 
 
