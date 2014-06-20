@@ -91,20 +91,20 @@
                     if($shiftnya=='shift1'){
                     ?>
                     <option value="semua">Semua Shift</option>
-                    <option value="shift1" selected>Shift 1</option>
-                    <option value="shift2">Shift 2</option>           
+                    <option value="shift1" selected>Shift 1 (09.00 - 13.00)</option>
+                    <option value="shift2">Shift 2 (13.00 - 21.00)</option>           
                     <?php
                     }else if($shiftnya=='shift2'){
                     ?>
                     <option value="semua">Semua Shift</option>
-                    <option value="shift1">Shift 1</option>
-                    <option value="shift2" selected>Shift 2</option>
+                    <option value="shift1">Shift 1 (09.00 - 13.00)</option>
+                    <option value="shift2" selected>Shift 2 (13.00 - 21.00)</option>
                     <?php
                     }else{
                     ?>
                     <option value="semua" selected>Semua Shift</option>
-                    <option value="shift1">Shift 1</option>
-                    <option value="shift2">Shift 2</option>
+                    <option value="shift1">Shift 1 (09.00 - 13.00)</option>
+                    <option value="shift2">Shift 2 (13.00 - 21.00)</option>
                     <?php
                     }
                     ?>          

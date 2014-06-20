@@ -69,8 +69,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file"></i>&nbsp;Laporan <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo site_url('dashboardLaporan/laporan_harian');?>">Per Shift</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo site_url('dashboardLaporan/');?>">Per Minggu</a></li>
+               
+                
                 <li class="divider"></li>
                 <li><a href="<?php echo site_url('dashboardLaporan/laporan_bulanan');?>">Per Bulan</a></li>
               </ul>

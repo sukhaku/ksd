@@ -23,7 +23,7 @@ class LaporanModel extends CI_Model{
 	}
 
 	function cariBulanan($bulan,$tahun,$waktu1,$waktu2){
-		return $this->db->query("select menu_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi between '$tahun-$bulan-% $waktu1%' and '$tahun-$bulan-% $waktu2%'  group by menu_transaksi")->result();
+		return $this->db->query("select menu_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date(date_transaksi) like '$tahun-$bulan-%' and time(date_transaksi) between '$waktu1' and '$waktu2'  group by menu_transaksi")->result();
 	}
 
 

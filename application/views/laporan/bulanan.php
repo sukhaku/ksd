@@ -90,8 +90,8 @@
                 <div class="form-group">
                   <select name='shift' class='form-control'>
                     <option value="semua">Semua Shift</option>
-                    <option value="shift1">Shift 1</option>
-                    <option value="shift2">Shift 2</option>           
+                    <option value="shift1">Shift 1 (09.00 - 13.00)</option>
+                    <option value="shift2">Shift 2 (13.00 - 21.00)</option>           
                   </select>
                 </div> 
                 

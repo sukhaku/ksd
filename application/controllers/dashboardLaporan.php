@@ -226,6 +226,7 @@ class DashboardLaporan extends CI_Controller {
 			$waktu2 = '';
 			$data['transaksibulanan'] = $this->laporanModel->ambilBulanan($month,$year);
 		}
+		
  		$data['tahun'] = $year;
  		$data['bul'] = $month;
  		$data['shiftnya'] = $shift;
