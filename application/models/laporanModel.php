@@ -8,20 +8,24 @@ class LaporanModel extends CI_Model{
 		return $this->db->get()->result();
 	}
 
-	function ambilHarian($tanggal,$waktu){
-		return $this->db->query("Select menu_transaksi,date_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi between '$tanggal'  and '$waktu'   group by menu_transaksi
-		")->result();
+	function ambilHarian($tanggal){
+		return $this->db->query("Select menu_transaksi,date_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi like '$tanggal%' group by menu_transaksi")->result();
 		
 	}
 
-	function cariHarian($tanggal,$waktu){
-	return $this->db->query("Select menu_transaksi,date_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi between '$tanggal'  and '$waktu' group by menu_transaksi")->result();
+	function cariHarian($tanggal,$waktu1,$waktu2){
+	return $this->db->query("select menu_transaksi,date_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi between '$tanggal $waktu1' and '$tanggal $waktu2' group by menu_transaksi")->result();
 				
 	}
 
-	function ambilBulanan(){
-		return $this->db->query('select menu_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd group by menu_transaksi')->result();
+	function ambilBulanan($bulan,$tahun){
+		return $this->db->query("select menu_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi like '$tahun-$bulan-%' group by menu_transaksi")->result();
 	}
+
+	function cariBulanan($bulan,$tahun,$waktu1,$waktu2){
+		return $this->db->query("select menu_transaksi,SUM(jumlah_menu) as jumlah from transaksi_menu_ksd where date_transaksi between '$tahun-$bulan-% $waktu1%' and '$tahun-$bulan-% $waktu2%'  group by menu_transaksi")->result();
+	}
+
 
 }
 ?>

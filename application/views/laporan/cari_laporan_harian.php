@@ -61,10 +61,11 @@
                   ?>
                   <select name='tanggal' class='form-control'>
                       <?php
+                        $angka = array("","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31");
                         echo"<option>Tanggal</option>";
                         $date = $explode[2];
                         for($a=1; $a<=31; $a++){
-                          if($a==$date){
+                          if($angka[$a]==$date){
                           echo"<option value=$a selected>$a</option>";
                           }else{
                             echo"<option value=$a>$a</option>";  
@@ -78,13 +79,14 @@
 
                       <?php
                         $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-                         echo"<option>Bulan</option>";
+                        $bulan_angka = array("","01","02","03","04","05","06","07","08","09","10","11","12");
+                        echo"<option>Bulan</option>";
                           $month = $explode[1];
                         for($b=1; $b<=12; $b++){
-                          if($b==$month){
-                              echo"<option value=$b selected>$bulan[$b]</option>";
+                          if($bulan_angka[$b]==$month){
+                              echo"<option value=$bulan_angka[$b] selected>$bulan[$b]</option>";
                           }else{
-                            echo"<option value=$b>$bulan[$b]</option>";
+                            echo"<option value=$bulan_angka[$b]>$bulan[$b]</option>";
                           }
                         }
                       ?>
@@ -107,7 +109,31 @@
                   </select>
                 
                 </div>  
-                
+                <div class="form-group">
+                  <select name='shift' class='form-control'>
+                    <?php
+                    if($shiftnya=='shift1'){
+                    ?>
+                    <option value="semua">Semua Shift</option>
+                    <option value="shift1" selected>Shift 1</option>
+                    <option value="shift2">Shift 2</option>           
+                    <?php
+                    }else if($shiftnya=='shift2'){
+                    ?>
+                    <option value="semua">Semua Shift</option>
+                    <option value="shift1">Shift 1</option>
+                    <option value="shift2" selected>Shift 2</option>
+                    <?php
+                    }else{
+                    ?>
+                    <option value="semua" selected>Semua Shift</option>
+                    <option value="shift1">Shift 1</option>
+                    <option value="shift2">Shift 2</option>
+                    <?php
+                    }
+                    ?>
+                  </select>
+                </div> 
                 
                  <button type="submit" class="btn btn-primary">Cari</button>
               </form><br>

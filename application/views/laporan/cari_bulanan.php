@@ -50,29 +50,21 @@
    <div class="row">
       <div class="col-lg-8">
         <div class="panel panel-default">
-          <div class="panel-heading"> Laporan KSD Per Minggu
+          <div class="panel-heading"> Laporan KSD Per Bulan
           </div>
             <div class="panel-body">
-              <form role="form" class="form-inline" action="<?php echo base_url('dashboardLaporan/cari_laporan_shift');?>" method="post">
-                <div class="form-group">
-                    <select name='bulan' class='form-control'>
-                      <option>Minggu 1</option>
-                      <option>Minggu 2</option>
-                      <option>Minggu 3</option>
-                      <option>Minggu 4</option>
-                  </select>
-                </div>  
+              <form role="form" class="form-inline" action="<?php echo base_url('dashboardLaporan/cari_laporan_bulanan');?>" method="post">
                 <div class="form-group">
                     <select name='bulan' class='form-control'>
                       <?php
-                        $bul = date("m");
                         $bulan = array("","Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-                         echo"<option>Bulan</option>";
+                        $bulan_angka = array("","01","02","03","04","05","06","07","08","09","10","11","12");
+                        echo"<option>Bulan</option>";
                         for($b=1; $b<=12; $b++){
-                          if($b==$bul){
-                              echo"<option value=$b selected>$bulan[$b]</option>";
+                          if($bulan_angka[$b]==$bul){
+                              echo"<option value=$bulan_angka[$b] selected>$bulan[$b]</option>";
                           }else{
-                            echo"<option value=$b>$bulan[$b]</option>";
+                            echo"<option value=$bulan_angka[$b]>$bulan[$b]</option>";
                           }
                         }
                       ?>
@@ -81,7 +73,6 @@
                 <div class="form-group">
                       <select name='tahun' class='form-control'>
                       <?php
-                        $tahun = date("Y");
                          echo"<option>Tahun</option>";
                         for($t=2010; $t<=$tahun; $t++){
                           if($t==$tahun){
@@ -96,9 +87,27 @@
                 </div>  
                 <div class="form-group">
                   <select name='shift' class='form-control'>
+                   <?php
+                    if($shiftnya=='shift1'){
+                    ?>
+                    <option value="semua">Semua Shift</option>
+                    <option value="shift1" selected>Shift 1</option>
+                    <option value="shift2">Shift 2</option>           
+                    <?php
+                    }else if($shiftnya=='shift2'){
+                    ?>
                     <option value="semua">Semua Shift</option>
                     <option value="shift1">Shift 1</option>
-                    <option value="shift2">Shift 2</option>           
+                    <option value="shift2" selected>Shift 2</option>
+                    <?php
+                    }else{
+                    ?>
+                    <option value="semua" selected>Semua Shift</option>
+                    <option value="shift1">Shift 1</option>
+                    <option value="shift2">Shift 2</option>
+                    <?php
+                    }
+                    ?>          
                   </select>
                 </div> 
                 
@@ -134,4 +143,3 @@
     </div>
   </div>
 
-  
